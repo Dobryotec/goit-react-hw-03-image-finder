@@ -15,23 +15,15 @@ class App extends Component {
     isLoading: false,
     isShowModal: false,
     largeImageURL: '',
+    showBtn: true,
   };
 
   componentDidUpdate(prevProps, prevState) {
     const searchText = this.state.searchText.trim();
 
     if (
-      prevProps.searchText !== searchText &&
-      searchText &&
-      prevState.searchText !== searchText
-    ) {
-      this.setState({ images: [], page: 1, isLoading: true }, () => {
-        this.fetchImages(searchText);
-      });
-    }
-    if (
-      prevState.page !== this.state.page &&
-      prevState.searchText === searchText
+      prevState.searchText !== searchText ||
+      prevState.page !== this.state.page
     ) {
       this.fetchImages(searchText);
     }
@@ -45,6 +37,7 @@ class App extends Component {
         .then(({ hits }) =>
           this.setState(prevState => ({
             images: [...prevState.images, ...hits],
+            showBtn: hits.length >= 12,
           }))
         )
         .catch(error => {
@@ -58,7 +51,7 @@ class App extends Component {
     }
   };
   handleLoadMore = () => {
-    this.setState(prevState => ({ page: prevState.page + 1, isLoading: true }));
+    this.setState(prevState => ({ page: prevState.page + 1 }));
   };
 
   createSearchText = searchText => {
@@ -73,13 +66,13 @@ class App extends Component {
   };
 
   render() {
-    const { images, isLoading, isShowModal } = this.state;
+    const { images, isLoading, isShowModal, showBtn } = this.state;
     return (
       <div className={css.app}>
         <Searchbar createSearchText={this.createSearchText} />
         <ImageGallery images={images} showModal={this.showModal} />
         {isLoading && <Loader />}
-        {images.length > 0 && !isLoading && (
+        {images.length > 0 && !isLoading && showBtn && (
           <LoadMoreButton onClick={this.handleLoadMore} />
         )}
         {isShowModal && (
