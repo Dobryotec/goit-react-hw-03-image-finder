@@ -13,6 +13,7 @@ class Searchbar extends Component {
   handleSubmit = e => {
     e.preventDefault();
     this.props.createSearchText(this.state.value);
+    this.setState({ value: '' });
   };
 
   render() {
@@ -22,6 +23,7 @@ class Searchbar extends Component {
           <button type="submit" className={css.button}>
             <span className={css['button-label']}>Search</span>
           </button>
+
           <input
             className={css.input}
             type="text"

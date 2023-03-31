@@ -1,8 +1,7 @@
 import ImageGalleryItem from 'components/ImageGalleryItem/ImageGalleryItem';
 import css from './ImageGallery.module.css';
 
-const ImageGallery = ({ images }) => {
-  console.log(images);
+const ImageGallery = ({ images, showModal }) => {
   return (
     <ul className={css.gallery}>
       {images.map(({ id, webformatURL, largeImageURL, tags }) => {
@@ -12,6 +11,7 @@ const ImageGallery = ({ images }) => {
             webformatURL={webformatURL}
             largeImageURL={largeImageURL}
             tags={tags}
+            showModal={showModal}
           />
         );
       })}

@@ -30,7 +30,7 @@
   width: 48px;
   height: 48px;
   border: 0;
-  background-image: url('https://image.flaticon.com/icons/svg/149/149852.svg');
+  background-image: url('https://w7.pngwing.com/pngs/920/939/png-transparent-computer-icons-icon-design-loupe-technic-internet-black-and-white.png');
   background-size: 40%;
   background-repeat: no-repeat;
   background-position: center;
@@ -45,8 +45,8 @@
 
 .button-label {
   position: absolute;
-  width: 1px;
-  height: 1px;
+  width: 10px;
+  height: 10px;
   padding: 0;
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
